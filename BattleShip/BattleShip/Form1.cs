@@ -23,5 +23,7 @@ namespace BattleShip
             mainBoard.Location = new System.Drawing.Point(0, 0);
             this.Controls.Add(mainBoard);
         }
+
+       
     }
 }
