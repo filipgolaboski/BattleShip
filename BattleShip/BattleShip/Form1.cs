@@ -12,7 +12,7 @@ namespace BattleShip
 {
     public partial class Form1 : Form
     {
-        public mainTwoPlayerBoard mainBoard = new mainTwoPlayerBoard();
+        public mainTwoPlayerBoard mainBoard = new mainTwoPlayerBoard(4);
         public Form1()
         {
             InitializeComponent();

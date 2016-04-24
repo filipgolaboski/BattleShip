@@ -12,7 +12,7 @@ namespace BattleShip
     {  //prilichno ednostavna klasa sodrzhi picture box i osnovni promenlivi kako dali e kliknata dali si vrz nejze dali e brod i sl
         public int i, j;
         public bool boatHere = false;
-        private bool clicked = false;
+        public bool clicked = false;
         public bool isSetup = false;
         public bool isHighLighted = false;
         public bool currentOver = false;
@@ -27,36 +27,14 @@ namespace BattleShip
             this.isSetup = isSetup;
             BackColor = Color.Blue;
         }
-        protected override void OnClick(EventArgs e)
-        {
-            clicked = true;
-            if (isSetup)
-            {
-                boatHere = true;
-                BackColor = Color.Green;
-            }
-            else {
-                BackColor = Color.Gray;
-            }
-            base.OnClick(e);
-        }
-        protected override void OnMouseEnter(EventArgs e)
-        {
-            currentOver = true;
-            highLight();
-            base.OnMouseEnter(e);
-        }
-        protected override void OnMouseLeave(EventArgs e)
-        {
-            currentOver = false;
-            unhighLight();
-            base.OnMouseLeave(e);
-        }
         public void setBoat()
         {
             if (isSetup)
             {
+                boatHere = true;
                 BackColor = Color.Green;
+                Enabled = false;
+               isHighLighted = false;
             }
             else
             {

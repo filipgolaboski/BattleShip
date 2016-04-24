@@ -40,20 +40,21 @@ namespace BattleShip
             }
            
         }
-      
+       
         private void Tiles_Enter(object sender, EventArgs e)
         {   //pri vleguvanje so glushecot se menuva bojata
             Tile temp = (Tile)sender;
             if (shipRotation)//spoder rotacijata na koja strana da se vrti
             {
-                if (temp.i < MAXI - numBoats) // ova e za da ne izleguva OutOfBounds indeksot
-                {// dolu se objasnati ovie funkcii
-                    HighlighEnoughVerticalBoats(temp); 
-                }
-                else
-                {
-                    HighlightLessVerticalBoats(temp);
-                }
+                    if (temp.i < MAXI - numBoats) // ova e za da ne izleguva OutOfBounds indeksot
+                    {// dolu se objasnati ovie funkcii
+                        HighlighEnoughVerticalBoats(temp);
+                    }
+                    else
+                    {
+                        HighlightLessVerticalBoats(temp);
+                    }
+                
             }
             else
             {
@@ -65,6 +66,9 @@ namespace BattleShip
                     HighlightLessHorizontalBoats(temp);
                 }
             }
+
+            
+            
         }
         private void Tiles_Leave(object sender, EventArgs e)
         {   //isto kako predhodno samo za brishenje
@@ -94,21 +98,38 @@ namespace BattleShip
         }
         private void Tiles_Click(object sender , EventArgs e)
         {
+            if (numHighlight() == numBoats) //ako ima highligh kolku num boats togash stavaj boat
+            {
+                for (int i = 0; i < 8; i++)
+                {
+                    for (int j = 0; j < 24; j++)
+                    {
+                        if (Tiles[i, j].isHighLighted)//site shto se obelezhani gi setira kako brod 
+                        {
+                            Tiles[i, j].setBoat();
+                        }
+                    }
+
+                }
+            }
+            shipRotation = true;
+            
+        }
+        public int numHighlight()
+        {
+            int k = 0;
             for (int i = 0; i < 8; i++)
             {
                 for (int j = 0; j < 24; j++)
                 {
                     if (Tiles[i, j].isHighLighted)//site shto se obelezhani gi setira kako brod 
                     {
-                        Tiles[i, j].setBoat();
+                        k++; 
                     }
                 }
-               
+
             }
-
-
-
-
+            return k;
         }
 
         private void HighlighEnoughVerticalBoats(Tile temp)
@@ -133,10 +154,11 @@ namespace BattleShip
         }
         private void HighlightLessVerticalBoats(Tile temp)
         {   //TODO ova treba da se modificira bidejki iako praktichno ne izgleda dobro
-            int k = 0;
+                 int k = 0;
+            int i = MAXI-numBoats;
                 while (k < numBoats)
                 {
-                    Tiles[temp.i - k, temp.j].highLight();//slichna e logikata samo shto namesto nadolu da odi odi nagore 
+                    Tiles[i + k, temp.j].highLight();//slichna e logikata samo shto namesto nadolu da odi odi nagore 
                     k++;
                 }
            
@@ -144,10 +166,10 @@ namespace BattleShip
         private void UnHighlightLessVerticalBoats(Tile temp)
         {
             int k = 0;
-           
-                while (k < numBoats)
+            int i = MAXI - numBoats;
+            while (k < numBoats)
                 {
-                    Tiles[temp.i - k, temp.j].unhighLight();
+                    Tiles[i + k, temp.j].unhighLight();
                     k++;
                 }
            
@@ -176,20 +198,25 @@ namespace BattleShip
         private void HighlightLessHorizontalBoats(Tile temp)
         {
             int k = 0;
+            int j = MAXJ - numBoats;
             while (k < numBoats)
             {
-                Tiles[temp.i, temp.j-k].highLight();
+                Tiles[temp.i, j+k].highLight();//slichna e logikata samo shto namesto nadolu da odi odi nagore 
                 k++;
             }
+
+
+          
 
         }
         private void UnHighlightLessHorizontalBoats(Tile temp)
         {
+            
             int k = 0;
-
+            int j = MAXJ - numBoats;
             while (k < numBoats)
             {
-                Tiles[temp.i, temp.j-k].unhighLight();
+                Tiles[temp.i, j+k].unhighLight();
                 k++;
             }
 
