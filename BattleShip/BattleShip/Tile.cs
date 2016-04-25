@@ -9,41 +9,53 @@ using System.Windows.Forms;
 namespace BattleShip
 {
    public class Tile : PictureBox
-    {
-        private bool clicked = false;
-        public Tile()
+    {  //prilichno ednostavna klasa sodrzhi picture box i osnovni promenlivi kako dali e kliknata dali si vrz nejze dali e brod i sl
+        public int i, j;
+        public bool boatHere = false;
+        public bool opBoatHere = false;
+        public bool clicked = false;
+        public bool isHighLighted = false;
+        public bool currentOver = false;
+       
+        public Tile( int i, int j)
         {
-            BackColor = Color.Blue;
+            
             Height = 40;
             Width = 40;
+            this.i = i;
+            this.j = j;
+            BackColor = Color.Blue;
         }
-        protected override void OnClick(EventArgs e)
+        public void setOpBoat()
         {
-            clicked = true;
-            BackColor = Color.Red;
-            base.OnClick(e);
+            opBoatHere = true;
         }
-        protected override void OnMouseEnter(EventArgs e)
+        public void setBoat()
+        {
+            boatHere = true;
+            BackColor = Color.Green;
+            Enabled = false;
+            isHighLighted = false;
+            clicked = true;
+        }
+        public void highLight()
         {
             if (!clicked)
             {
+                isHighLighted = true;
                 BackColor = Color.Yellow;
             }
-            base.OnMouseEnter(e);
         }
-        protected override void OnMouseLeave(EventArgs e)
+        public void unhighLight()
         {
             if (!clicked)
             {
+                isHighLighted = false;
                 BackColor = Color.Blue;
             }
-            base.OnMouseLeave(e);
+
         }
-        public void opponentClick()
-        {
-            BackColor = Color.Red;
-            clicked = true;
-        }
+
 
     }
 }

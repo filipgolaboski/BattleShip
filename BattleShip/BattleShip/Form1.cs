@@ -12,7 +12,7 @@ namespace BattleShip
 {
     public partial class Form1 : Form
     {
-        public mainTwoPlayerBoard mainBoard = new mainTwoPlayerBoard();
+        public setUpTwoPlayerBoard mainBoard = new setUpTwoPlayerBoard(4);
         public Form1()
         {
             InitializeComponent();
@@ -23,5 +23,7 @@ namespace BattleShip
             mainBoard.Location = new System.Drawing.Point(0, 0);
             this.Controls.Add(mainBoard);
         }
+
+       
     }
 }
