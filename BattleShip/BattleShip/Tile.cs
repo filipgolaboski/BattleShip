@@ -13,7 +13,6 @@ namespace BattleShip
         public int i, j;
         public bool boatHere = false;
         public bool opBoatHere = false;
-        public bool clicked = false;
         public bool isHighLighted = false;
         public bool start = false;
         public int direction = 0;
@@ -37,11 +36,11 @@ namespace BattleShip
             BackColor = Color.Green;
             Enabled = false;
             isHighLighted = false;
-            clicked = true;
+            
         }
         public void highLight()
         {
-            if (!clicked)
+            if (!boatHere)
             {
                 isHighLighted = true;
                 BackColor = Color.Yellow;
@@ -49,27 +48,22 @@ namespace BattleShip
         }
         public void unhighLight()
         {
-            if (!clicked)
+            if (!boatHere)
             {
                 isHighLighted = false;
                 BackColor = Color.Blue;
             }
 
         }
-        public void setStartAndDir(bool dir)
+        public void setStartAndDir(int dir)
         {
             start = true;
             BackColor = Color.Red;
-            if (dir)
-            {
-                direction = 0;
+            
+                direction = dir;
                 
-            }
-            else
-            {
-                direction = 1;
-                
-            }
+           
+            
         }
 
 

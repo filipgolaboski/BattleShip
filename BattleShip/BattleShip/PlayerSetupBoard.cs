@@ -10,19 +10,18 @@ namespace BattleShip
    public class PlayerSetupBoard : Panel
     {
         //del od poseben igrach
-        public Tile[,] Tiles = new Tile[8, 24];
+        public static int MAXI = 8;
+        public static int MAXJ = 26;
+        public Tile[,] Tiles = new Tile[MAXI, MAXJ];
         public int numBoats = 0;
-        public bool shipRotation = false;
-        public int MAXI=8;
-        public int MAXJ=24;
-        public bool isSetup = false;
-        public PlayerSetupBoard(int numBoats, bool shipRotation)
+        public int shipRotation = 0;
+        
+        public PlayerSetupBoard(int numBoats, int shipRotation)
         {
-            this.isSetup = isSetup;
             this.numBoats = numBoats;
             this.shipRotation = shipRotation;
             Height = 337;
-            Width = 1013;
+            Width = 1100;
             int x = 5;
             int y = 5;
             for (int i = 0; i < MAXI; i++)
@@ -46,7 +45,7 @@ namespace BattleShip
         private void Tiles_Enter(object sender, EventArgs e)
         {   //pri vleguvanje so glushecot se menuva bojata
             Tile temp = (Tile)sender;
-            if (shipRotation)//spoder rotacijata na koja strana da se vrti
+            if (shipRotation==0)//spoder rotacijata na koja strana da se vrti
             {
                     if (temp.i < MAXI - numBoats) // ova e za da ne izleguva OutOfBounds indeksot
                     {// dolu se objasnati ovie funkcii
@@ -75,7 +74,7 @@ namespace BattleShip
         private void Tiles_Leave(object sender, EventArgs e)
         {   //isto kako predhodno samo za brishenje
             Tile temp = (Tile)sender;
-            if (shipRotation)
+            if (shipRotation==0)
             {
                 if (temp.i < MAXI - numBoats)
                 {
@@ -104,7 +103,7 @@ namespace BattleShip
             int pos=0;
             if (numHighlight() == numBoats) //ako ima highligh kolku num boats togash stavaj boat
             {
-                if (shipRotation)
+                if (shipRotation==0)
                 {
                     while (t.isHighLighted)
                     {
@@ -160,7 +159,7 @@ namespace BattleShip
                     }
                 }
             }
-            shipRotation = true;
+            
             
         }
         public int numHighlight()

@@ -9,9 +9,9 @@ namespace BattleShip
 {
     public class OpponentSetupBoard : Panel
     {
-        public int MAXI = 8;
-        public int MAXJ = 24;
-        public Tile[,] Tiles = new Tile[8, 24];
+        public static int MAXI = 8;
+        public static int MAXJ = 26;
+        public Tile[,] Tiles = new Tile[MAXI, MAXJ];
         private Random tileChooseI = new Random();
         private Random tileChooseJ = new Random();
         private Random direction = new Random();
@@ -21,7 +21,7 @@ namespace BattleShip
         public OpponentSetupBoard()
         {
             Height = 337;
-            Width = 1013;
+            Width = 1100;
             int x = 5;
             int y = 5;
             for (int i = 0; i < MAXI; i++)
@@ -89,7 +89,7 @@ namespace BattleShip
                                 Tiles[i + k, j].setBoat();
                                 if (i + k == i + 1)
                                 {
-                                    Tiles[i + k, j].setStartAndDir(true);
+                                    Tiles[i + k, j].setStartAndDir(dir);
                                 }
                                 k--;
                             }
@@ -108,7 +108,7 @@ namespace BattleShip
                                     Tiles[pos + k, j].setBoat();
                                     if (pos + k == pos + 1)
                                     {
-                                        Tiles[pos + k, j].setStartAndDir(true);
+                                        Tiles[pos + k, j].setStartAndDir(dir);
                                     }
                                     k--;
                                 }
@@ -129,7 +129,7 @@ namespace BattleShip
                                 Tiles[i, j + k].setBoat();
                                 if (j + k == j + 1)
                                 {
-                                    Tiles[i, j+k].setStartAndDir(false);
+                                    Tiles[i, j+k].setStartAndDir(dir);
                                 }
                                 k--;
                             }
@@ -149,7 +149,7 @@ namespace BattleShip
                                     Tiles[i, pos + k].setBoat();
                                     if (pos + k == pos + 1)
                                     {
-                                        Tiles[i , pos + k].setStartAndDir(false);
+                                        Tiles[i , pos + k].setStartAndDir(dir);
                                     }
                                     k--;
                                 }
