@@ -101,23 +101,32 @@ namespace BattleShip
         private void Tiles_Click(object sender , EventArgs e)
         {
             Tile t = (Tile)sender;
+            int pos=0;
             if (numHighlight() == numBoats) //ako ima highligh kolku num boats togash stavaj boat
             {
                 if (shipRotation)
                 {
                     while (t.isHighLighted)
                     {
-                        t = Tiles[t.i - 1, t.j];
+                        pos = t.i - 1;
+                        if (t.i != 0)
+                        {
+                            t = Tiles[t.i - 1, t.j];
+                        }
+                        else
+                        {
+                            break;
+                        }
                     }
                    
                     int k = numBoats;
                     while (k > 0)
                     {
-                        Tiles[t.i + k, t.j].unhighLight();
-                        Tiles[t.i + k, t.j].setBoat();
-                        if (t.i + k == t.i + 1)
+                        Tiles[pos + k, t.j].unhighLight();
+                        Tiles[pos + k, t.j].setBoat();
+                        if (pos + k == pos + 1)
                         {
-                            Tiles[t.i + k, t.j].setStartAndDir(shipRotation);
+                            Tiles[pos + k, t.j].setStartAndDir(shipRotation);
                         }
                         k--;
                     }
@@ -126,17 +135,26 @@ namespace BattleShip
                 {
                     while (t.isHighLighted)
                     {
-                        t = Tiles[t.i, t.j-1];
+                        pos = t.j - 1;
+                        if (t.j != 0)
+                        {
+                            t = Tiles[t.i, t.j - 1];
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    
                     }
 
                     int k = numBoats;
                     while (k > 0)
                     {
-                        Tiles[t.i, t.j+k].unhighLight();
-                        Tiles[t.i, t.j+k].setBoat();
-                        if (t.j + k == t.j + 1)
+                        Tiles[t.i, pos+k].unhighLight();
+                        Tiles[t.i, pos+k].setBoat();
+                        if (pos + k == pos + 1)
                         {
-                            Tiles[t.i, t.j+k].setStartAndDir(shipRotation);
+                            Tiles[t.i, pos+k].setStartAndDir(shipRotation);
                         }
                         k--;
                     }
