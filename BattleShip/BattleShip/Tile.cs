@@ -15,7 +15,8 @@ namespace BattleShip
         public bool opBoatHere = false;
         public bool clicked = false;
         public bool isHighLighted = false;
-        public bool currentOver = false;
+        public bool start = false;
+        public int direction = 0;
        
         public Tile( int i, int j)
         {
@@ -54,6 +55,21 @@ namespace BattleShip
                 BackColor = Color.Blue;
             }
 
+        }
+        public void setStartAndDir(bool dir)
+        {
+            start = true;
+            BackColor = Color.Red;
+            if (dir)
+            {
+                direction = 0;
+                
+            }
+            else
+            {
+                direction = 1;
+                
+            }
         }
 
 

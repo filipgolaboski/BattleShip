@@ -87,6 +87,10 @@ namespace BattleShip
                             while (k > 0)
                             {
                                 Tiles[i + k, j].setBoat();
+                                if (i + k == i + 1)
+                                {
+                                    Tiles[i + k, j].setStartAndDir(true);
+                                }
                                 k--;
                             }
                             max--;
@@ -102,6 +106,10 @@ namespace BattleShip
                                 while (k > 0)
                                 {
                                     Tiles[pos + k, j].setBoat();
+                                    if (pos + k == pos + 1)
+                                    {
+                                        Tiles[pos + k, j].setStartAndDir(true);
+                                    }
                                     k--;
                                 }
                                 max--;
@@ -119,6 +127,10 @@ namespace BattleShip
                             while (k > 0)
                             {
                                 Tiles[i, j + k].setBoat();
+                                if (j + k == j + 1)
+                                {
+                                    Tiles[i, j+k].setStartAndDir(false);
+                                }
                                 k--;
                             }
                             max--;
@@ -135,6 +147,10 @@ namespace BattleShip
                                 while (k > 0)
                                 {
                                     Tiles[i, pos + k].setBoat();
+                                    if (pos + k == pos + 1)
+                                    {
+                                        Tiles[i , pos + k].setStartAndDir(false);
+                                    }
                                     k--;
                                 }
                                 max--;

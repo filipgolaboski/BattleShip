@@ -100,18 +100,46 @@ namespace BattleShip
         }
         private void Tiles_Click(object sender , EventArgs e)
         {
+            Tile t = (Tile)sender;
             if (numHighlight() == numBoats) //ako ima highligh kolku num boats togash stavaj boat
             {
-                for (int i = 0; i < MAXI; i++)
+                if (shipRotation)
                 {
-                    for (int j = 0; j < MAXJ; j++)
+                    while (t.isHighLighted)
                     {
-                        if (Tiles[i, j].isHighLighted)//site shto se obelezhani gi setira kako brod 
+                        t = Tiles[t.i - 1, t.j];
+                    }
+                   
+                    int k = numBoats;
+                    while (k > 0)
+                    {
+                        Tiles[t.i + k, t.j].unhighLight();
+                        Tiles[t.i + k, t.j].setBoat();
+                        if (t.i + k == t.i + 1)
                         {
-                            Tiles[i, j].setBoat();
+                            Tiles[t.i + k, t.j].setStartAndDir(shipRotation);
                         }
+                        k--;
+                    }
+                }
+                else
+                {
+                    while (t.isHighLighted)
+                    {
+                        t = Tiles[t.i, t.j-1];
                     }
 
+                    int k = numBoats;
+                    while (k > 0)
+                    {
+                        Tiles[t.i, t.j+k].unhighLight();
+                        Tiles[t.i, t.j+k].setBoat();
+                        if (t.j + k == t.j + 1)
+                        {
+                            Tiles[t.i, t.j+k].setStartAndDir(shipRotation);
+                        }
+                        k--;
+                    }
                 }
             }
             shipRotation = true;
