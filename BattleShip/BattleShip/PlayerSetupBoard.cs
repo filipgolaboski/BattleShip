@@ -155,7 +155,7 @@ namespace BattleShip
                     {
                         Tiles[t.i, pos+k].unhighLight();
                         Tiles[t.i, pos+k].setBoat();
-                        temp.Add(new Index(pos + k, t.j));
+                        temp.Add(new Index(t.i, pos+k));
                         k--;
                     }
                     listOFBoats.Add(temp);
