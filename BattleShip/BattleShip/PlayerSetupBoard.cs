@@ -25,13 +25,20 @@ namespace BattleShip
         public Bitmap[] fiveImages = new Bitmap[5];
         public Bitmap[] fiveImagesVer = new Bitmap[5];
         public int[] numBoatsOnTile = { 3, 1, 1 };
+       
         public PlayerSetupBoard(int numBoats, int shipRotation)
         {
             //Bitmap img = new Bitmap("../../Textures/water.jpg");
-            Bitmap img = Properties.Resources.water;
+           
             loadImages();
             this.numBoats = numBoats;
             this.shipRotation = shipRotation;
+            init();
+           
+        }
+        public  void init()
+        {
+            Bitmap img = Properties.Resources.water;
             Height = 400;
             Width = 400;
             int x = 0;
@@ -40,21 +47,20 @@ namespace BattleShip
             {
                 for (int j = 0; j < MAXJ; j++)
                 { //inicijalizacija na pole
-                    Tiles[i, j] = new Tile(i,j);
+                    Tiles[i, j] = new Tile(i, j);
                     Tiles[i, j].setImage(img);
                     Tiles[i, j].MouseEnter += Tiles_Enter;//event handlers 
                     Tiles[i, j].MouseLeave += Tiles_Leave;
                     Tiles[i, j].MouseClick += Tiles_Click;
                     Tiles[i, j].Location = new System.Drawing.Point(x, y);//lokacija na pole
                     this.Controls.Add(Tiles[i, j]);
-                    x += Tiles[i, j].Width ; //se zgolemuva pozicijata za shirinata plus 2
-                    
+                    x += Tiles[i, j].Width; //se zgolemuva pozicijata za shirinata plus 2
+
                 }
-                y += Tiles[i, 0].Height ; //posle j pati se prefrla na drug red
+                y += Tiles[i, 0].Height; //posle j pati se prefrla na drug red
                 x = 0;//se vraka nazad na pochetna x
-              
+                
             }
-           
         }
        public void loadImages()
         {

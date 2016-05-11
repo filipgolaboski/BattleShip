@@ -22,18 +22,22 @@ namespace BattleShip
         private int c = 0;
         public Label l = new Label();
         public List<HashSet<Index>> playerListBoats;
+        public List<HashSet<Index>> opponentListBoats;
         private bool firstTime = true;
         public Button newGame = new Button();
         private BattleContainer bt = null;
         private Label lbTitle = new Label();
         private Label lbOpponent = new Label();
         private Label lbPlayer = new Label();
+        private int sTilesHit = 0;
+        private Random r = new Random();
         public BattleBoard(PlayerSetupBoard pt, OpponentSetupBoard st , List<HashSet<Index>> playerBoatList, List<HashSet<Index>> opponentBoatList)
         {
             playerBoard = new PlayerWarBoard(pt.Tiles);
             opponentBoard = new OpponentWarBoard(st.Tiles);
+            setPlayerControls();
             playerListBoats = playerBoatList;
-            opponentBoard.setListOfBoats(opponentBoatList);
+            opponentListBoats=opponentBoatList;
             opponentBoard.Location = st.Location;
             playerBoard.Location = pt.Location;
             playerBoard.Enabled = false;
@@ -55,7 +59,6 @@ namespace BattleShip
             newGame.Location = new Point(opponentBoard.Width + opponentBoard.Location.X - newGame.Width, playerBoard.Height + 105);
             newGame.Font = new Font("Arial", 10, FontStyle.Italic);
             newGame.Text = "New Game";
-            newGame.MouseClick += newGame_click;
             this.Controls.Add(newGame);
             this.Controls[this.Controls.Count - 1].BringToFront();
             lbTitle.Font = new Font(new FontFamily("Arial"), 20, FontStyle.Bold | FontStyle.Italic);
@@ -204,6 +207,7 @@ namespace BattleShip
                             playerListBoats.Remove(boat);
                             break;
                         }
+                        
 
                     }
 
@@ -294,20 +298,85 @@ namespace BattleShip
             int j = rj.Next(10);
             return j;
         }
-        private void newGame_click(object sender, EventArgs e)
-        {
-            DialogResult res = MessageBox.Show("Are you sure you want to start a new game? (You will not be able to continue the current game later)", "Start new game",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question);
-            if(res == DialogResult.Yes)
-            {
-                startNewGame();
-            }
-        }
+       
         public void startNewGame()
         {
             this.Dispose();
             bt.startSetup();
+        }
+        public void setPlayerControls()
+        {
+            for(int i = 0; i < 10; i++)
+            {
+                for(int j = 0; j < 10; j++)
+                {
+                    if (opponentBoard.WarTile[i, j].boatHere)
+                    {
+                        opponentBoard.WarTile[i, j].Click += ShipTile_Click;
+                    }
+                    else
+                    {
+                        opponentBoard.WarTile[i, j].Click += Tile_Click;
+                    }
+                }
+            }
+        }
+        private void Tile_Click(object sender, EventArgs e)
+        {
+            string s1 = "That was a miss";
+            string s2 = "We hit nothing but water, captain";
+            string s3 = "No enemy ships on that position";
+            int n = r.Next(0, 3);
+            switch (n)
+            {
+                case 0:
+                    l.Text = s1;
+                    break;
+                case 1:
+                    l.Text = s2;
+                    break;
+                case 2:
+                    l.Text = s3;
+                    break;
+            }
+            huntIsOn = true;
+            opponentBoard.Enabled = false;
+        }
+        private void ShipTile_Click(object sender, EventArgs e)
+        {
+
+            sTilesHit++;
+            if (sTilesHit < 18)
+            {
+                l.Text = "We hit an enemy ship! Fire again, captain!";
+                Tile t = (Tile)sender;
+                foreach (HashSet<Index> boat in opponentListBoats)
+                {
+                    Index ind = new Index(t.i, t.j);
+                    boat.Remove(ind);
+                    if (boat.Count == 0)
+                    {
+                        l.Text = "Great job, you destroyed an enemy battleship! Fire again!";
+                        opponentListBoats.Remove(boat);
+                        break;
+                    }
+
+                }
+            }
+            else
+            {
+                t.Stop();
+                l.Text = "You W I N";
+                DialogResult res = MessageBox.Show("You are victorious, captain! How about another round?", "V I C T O R Y",
+                    MessageBoxButtons.YesNo);
+                if (res == DialogResult.Yes)
+                {
+                    startNewGame();
+                }
+                else
+                    Application.Exit();
+            }
+
         }
     }
 }

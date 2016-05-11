@@ -25,3 +25,12 @@ C:\Users\Ljupco\Desktop\BattleShip\BattleShip\BattleShip\obj\Debug\BattleShip.cs
 C:\Users\Ljupco\Desktop\BattleShip\BattleShip\BattleShip\obj\Debug\BattleShip.Form1.resources
 C:\Users\Ljupco\Desktop\BattleShip\BattleShip\BattleShip\obj\Debug\BattleShip.Properties.Resources.resources
 C:\Users\Ljupco\Desktop\BattleShip\BattleShip\BattleShip\obj\Debug\BattleShip.csproj.GenerateResource.Cache
+C:\Users\filip\Downloads\BattleShip-BattleShip-withSomeGraphics\BattleShip-BattleShip-withSomeGraphics\BattleShip\BattleShip\bin\Debug\BattleShip.exe.config
+C:\Users\filip\Downloads\BattleShip-BattleShip-withSomeGraphics\BattleShip-BattleShip-withSomeGraphics\BattleShip\BattleShip\obj\Debug\BattleShip.exe
+C:\Users\filip\Downloads\BattleShip-BattleShip-withSomeGraphics\BattleShip-BattleShip-withSomeGraphics\BattleShip\BattleShip\obj\Debug\BattleShip.pdb
+C:\Users\filip\Downloads\BattleShip-BattleShip-withSomeGraphics\BattleShip-BattleShip-withSomeGraphics\BattleShip\BattleShip\bin\Debug\BattleShip.exe
+C:\Users\filip\Downloads\BattleShip-BattleShip-withSomeGraphics\BattleShip-BattleShip-withSomeGraphics\BattleShip\BattleShip\bin\Debug\BattleShip.pdb
+C:\Users\filip\Downloads\BattleShip-BattleShip-withSomeGraphics\BattleShip-BattleShip-withSomeGraphics\BattleShip\BattleShip\obj\Debug\BattleShip.csprojResolveAssemblyReference.cache
+C:\Users\filip\Downloads\BattleShip-BattleShip-withSomeGraphics\BattleShip-BattleShip-withSomeGraphics\BattleShip\BattleShip\obj\Debug\BattleShip.Form1.resources
+C:\Users\filip\Downloads\BattleShip-BattleShip-withSomeGraphics\BattleShip-BattleShip-withSomeGraphics\BattleShip\BattleShip\obj\Debug\BattleShip.Properties.Resources.resources
+C:\Users\filip\Downloads\BattleShip-BattleShip-withSomeGraphics\BattleShip-BattleShip-withSomeGraphics\BattleShip\BattleShip\obj\Debug\BattleShip.csproj.GenerateResource.Cache

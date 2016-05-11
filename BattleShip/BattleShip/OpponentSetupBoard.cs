@@ -54,6 +54,7 @@ namespace BattleShip
 
 
             }
+            setBoats();
         }
 
         public void loadImages()

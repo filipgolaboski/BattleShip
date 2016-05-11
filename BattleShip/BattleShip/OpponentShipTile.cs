@@ -17,6 +17,7 @@ namespace BattleShip
             this.i = i;
             this.j = j;
             clicked = false;
+            boatHere = true;
         }
 
         protected override void OnMouseClick(MouseEventArgs e)

@@ -26,6 +26,7 @@ namespace BattleShip
         public Label oLabel = new Label();
         public Label pLabel= new Label();
         private int[] numBoats = { 3, 1, 1};
+        
         public setUpTwoPlayerBoard() {
             titleLabel.Font = new Font(new System.Drawing.FontFamily("Arial"), 20, FontStyle.Bold);
             titleLabel.ForeColor = Color.AntiqueWhite;
@@ -35,9 +36,11 @@ namespace BattleShip
             titleLabel.BackColor = Color.Transparent;
             this.Controls.Add(titleLabel);
             playerBoard = new PlayerSetupBoard(3, 0);
+            playerBoard.Location = new System.Drawing.Point(5, 100);
+            playerBoard.Click += board_click;
+            this.Controls.Add(playerBoard);
             opponentBoard = new OpponentSetupBoard();
             opponentBoard.Location = new System.Drawing.Point(500, 100);
-            opponentBoard.setBoats();
             this.Controls.Add(opponentBoard);
             oLabel.Font = new Font(new FontFamily("Arial"), 20, FontStyle.Italic | FontStyle.Bold);
             oLabel.ForeColor = Color.AntiqueWhite;
@@ -51,9 +54,6 @@ namespace BattleShip
             pLabel.Location = new Point(opponentBoard.Location.X + 110, 70);
             pLabel.Text = "Opponent sea";
             this.Controls.Add(pLabel);
-            playerBoard.Location =new System.Drawing.Point (5, 100);
-            playerBoard.Click += board_click;
-            this.Controls.Add(playerBoard);
             threeBoats.Text = "Ship size 3";
             threeBoats.MouseClick += threeBoats_click;
             threeBoats.Location = new System.Drawing.Point(5, playerBoard.Height + 105);
@@ -82,14 +82,11 @@ namespace BattleShip
             startGame.Location =new System.Drawing.Point(opponentBoard.Location.X, playerBoard.Height + 105);
             startGame.Font = new Font(new FontFamily("Arial"), 15, FontStyle.Bold | FontStyle.Italic);
             startGame.Text = "START THE BATTLE";
-            startGame.MouseClick += startGame_click;
+           
             this.Controls.Add(startGame);
 
         }
-        public void setBattleContainer(BattleContainer bt)
-        {
-            this.bt = bt;
-        }
+       
         private void fourBoats_click(object sender, EventArgs e)
         {
             playerBoard.numBoats = 4;
@@ -151,19 +148,10 @@ namespace BattleShip
                 playerBoard.shipRotation = 1;
             }
         }
-        private void startGame_click(object sender, EventArgs e)
+      
+        public bool gameReady()
         {
-            if (playerBoard.numBoatsOnTile[0] == 0 && playerBoard.numBoatsOnTile[1] == 0 && playerBoard.numBoatsOnTile[2] == 0)
-            {
-                this.Hide();
-                bt.startGame();
-            }
-            else
-                MessageBox.Show("You can't start the battle without your whole fleet in position", "Captain, please place all of your ships",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error
-                    );
-            
+            return playerBoard.numBoatsOnTile[0] == 0 && playerBoard.numBoatsOnTile[1] == 0 && playerBoard.numBoatsOnTile[2] == 0;
         }
         
     }
