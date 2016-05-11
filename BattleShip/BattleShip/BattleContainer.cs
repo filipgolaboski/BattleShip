@@ -17,29 +17,30 @@ namespace BattleShip
         {
             Height = h;
             Width = w;
+            
+           
         }
         public void startGame()
         {
+           
             battleBoard = new BattleBoard(setUp.playerBoard, setUp.opponentBoard, setUp.playerBoard.getBoatList(), setUp.opponentBoard.getListOfBoats());
             battleBoard.Location = new System.Drawing.Point(0,0);
             battleBoard.Height = this.Height;
             battleBoard.Width = this.Width;
             battleBoard.newGame.Click += newGame_click;
-            battleBoard.setBattleContainer(this);
             this.Controls.Add(battleBoard);
             
         }
         public void startSetup()
         {
-            
-                setUp = new setUpTwoPlayerBoard();
-                setUp.Location = new System.Drawing.Point(0, 0);
-                setUp.Height = this.Height;
-                setUp.Width = this.Width;
-                setUp.startGame.Click += startGame_click;
-                
-                this.Controls.Add(setUp);
-            
+              
+            setUp = new setUpTwoPlayerBoard();
+            setUp.Location = new System.Drawing.Point(0, 0);
+            setUp.Height = this.Height;
+            setUp.Width = this.Width;
+            setUp.startGame.Click += startGame_click;
+            this.Controls.Add(setUp);
+          
         }
        
         private void startGame_click(object sender, EventArgs e)

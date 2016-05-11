@@ -25,7 +25,6 @@ namespace BattleShip
         public List<HashSet<Index>> opponentListBoats;
         private bool firstTime = true;
         public Button newGame = new Button();
-        private BattleContainer bt = null;
         private Label lbTitle = new Label();
         private Label lbOpponent = new Label();
         private Label lbPlayer = new Label();
@@ -81,10 +80,6 @@ namespace BattleShip
             lbPlayer.BackColor = Color.Transparent;
             this.Controls.Add(lbPlayer);
 
-        }
-        public void setBattleContainer(BattleContainer bt)
-        {
-            this.bt = bt;
         }
         private void tick(object sender, EventArgs e)
         {
@@ -233,7 +228,7 @@ namespace BattleShip
                 t.Stop();
                 if (res == DialogResult.Yes)
                 {
-                    startNewGame();
+                    newGame.PerformClick();
                 } else
                 {
                     Application.Exit();
@@ -299,11 +294,6 @@ namespace BattleShip
             return j;
         }
        
-        public void startNewGame()
-        {
-            this.Dispose();
-            bt.startSetup();
-        }
         public void setPlayerControls()
         {
             for(int i = 0; i < 10; i++)
@@ -323,6 +313,7 @@ namespace BattleShip
         }
         private void Tile_Click(object sender, EventArgs e)
         {
+            
             string s1 = "That was a miss";
             string s2 = "We hit nothing but water, captain";
             string s3 = "No enemy ships on that position";
@@ -371,7 +362,7 @@ namespace BattleShip
                     MessageBoxButtons.YesNo);
                 if (res == DialogResult.Yes)
                 {
-                    startNewGame();
+                    newGame.PerformClick();
                 }
                 else
                     Application.Exit();
