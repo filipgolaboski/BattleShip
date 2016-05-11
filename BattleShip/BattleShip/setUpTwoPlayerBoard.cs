@@ -22,39 +22,66 @@ namespace BattleShip
         public Button changeDir = new Button();
         public Button startGame = new Button();
         public BattleContainer bt;
+        public Label titleLabel = new Label();
+        public Label oLabel = new Label();
+        public Label pLabel= new Label();
         private int[] numBoats = { 3, 1, 1};
         public setUpTwoPlayerBoard() {
+            titleLabel.Font = new Font(new System.Drawing.FontFamily("Arial"), 20, FontStyle.Bold);
+            titleLabel.ForeColor = Color.AntiqueWhite;
+            titleLabel.Size = new Size(550, 30);
+            titleLabel.Location = new Point(180, 10);
+            titleLabel.Text = "Welcome capitan, prepare for battle";
+            titleLabel.BackColor = Color.Transparent;
+            this.Controls.Add(titleLabel);
             playerBoard = new PlayerSetupBoard(3, 0);
             opponentBoard = new OpponentSetupBoard();
-            opponentBoard.Location = new System.Drawing.Point(500, 0);
+            opponentBoard.Location = new System.Drawing.Point(500, 100);
             opponentBoard.setBoats();
             this.Controls.Add(opponentBoard);
-            playerBoard.Location =new System.Drawing.Point (0,0);
+            oLabel.Font = new Font(new FontFamily("Arial"), 20, FontStyle.Italic | FontStyle.Bold);
+            oLabel.ForeColor = Color.AntiqueWhite;
+            oLabel.Size = new Size(150, 30);
+            oLabel.Location = new Point(140, 70);
+            oLabel.Text = "Your sea";
+            this.Controls.Add(oLabel);
+            pLabel.Font = new Font(new FontFamily("Arial"), 20, FontStyle.Italic | FontStyle.Bold);
+            pLabel.ForeColor = Color.AntiqueWhite;
+            pLabel.Size = new Size(250, 30);
+            pLabel.Location = new Point(opponentBoard.Location.X + 110, 70);
+            pLabel.Text = "Opponent sea";
+            this.Controls.Add(pLabel);
+            playerBoard.Location =new System.Drawing.Point (5, 100);
             playerBoard.Click += board_click;
             this.Controls.Add(playerBoard);
-            threeBoats.Text = "3boat";
+            threeBoats.Text = "Ship size 3";
             threeBoats.MouseClick += threeBoats_click;
-            threeBoats.Location = new System.Drawing.Point(0, playerBoard.Height);
+            threeBoats.Location = new System.Drawing.Point(5, playerBoard.Height + 105);
             threeBoats.Size = new System.Drawing.Size(100, 50);
+            threeBoats.Font = new Font(new FontFamily("Arial"), 10, FontStyle.Bold);
             this.Controls.Add(threeBoats);
-            fourBoats.Text = "4boat";
+            fourBoats.Text = "Ship size 4";
             fourBoats.MouseClick += fourBoats_click;
-            fourBoats.Location = new System.Drawing.Point(threeBoats.Width, playerBoard.Height);
+            fourBoats.Location = new System.Drawing.Point(threeBoats.Width + 5, playerBoard.Height + 105);
             fourBoats.Size = new System.Drawing.Size(100, 50);
+            fourBoats.Font = new Font(new FontFamily("Arial"), 10, FontStyle.Bold);
             this.Controls.Add(fourBoats);
-            fiveBoats.Text = "5boat";
+            fiveBoats.Text = "Ship size 5";
             fiveBoats.MouseClick += fiveBoats_click;
-            fiveBoats.Location = new System.Drawing.Point(threeBoats.Width + fourBoats.Width, playerBoard.Height);
+            fiveBoats.Location = new System.Drawing.Point(threeBoats.Width + fourBoats.Width + 5, playerBoard.Height + 105);
             fiveBoats.Size = new System.Drawing.Size(100, 50);
+            fiveBoats.Font = new Font(new FontFamily("Arial"), 10, FontStyle.Bold);
             this.Controls.Add(fiveBoats);
-            changeDir.Text = "Change Direction";
+            changeDir.Text = "Change orientation";
             changeDir.MouseClick += changeDir_click;
-            changeDir.Location = new System.Drawing.Point(threeBoats.Width + fourBoats.Width + fiveBoats.Width, playerBoard.Height);
+            changeDir.Location = new System.Drawing.Point(threeBoats.Width + fourBoats.Width + fiveBoats.Width + 5, playerBoard.Height + 105);
             changeDir.Size = new System.Drawing.Size(100, 50);
+            changeDir.Font = new Font(new FontFamily("Arial"), 10, FontStyle.Bold);
             this.Controls.Add(changeDir);
-            startGame.Size = new System.Drawing.Size(100, 50);
-            startGame.Location =new System.Drawing.Point(opponentBoard.Width + opponentBoard.Location.X - startGame.Width, playerBoard.Height); ;
-            startGame.Text = "Start";
+            startGame.Size = new System.Drawing.Size(400, 50);
+            startGame.Location =new System.Drawing.Point(opponentBoard.Location.X, playerBoard.Height + 105);
+            startGame.Font = new Font(new FontFamily("Arial"), 15, FontStyle.Bold | FontStyle.Italic);
+            startGame.Text = "START THE BATTLE";
             startGame.MouseClick += startGame_click;
             this.Controls.Add(startGame);
 
@@ -126,12 +153,16 @@ namespace BattleShip
         }
         private void startGame_click(object sender, EventArgs e)
         {
-            if(playerBoard.numBoatsOnTile[0]==0 && playerBoard.numBoatsOnTile[1] == 0 && playerBoard.numBoatsOnTile[2] == 0)
+            if (playerBoard.numBoatsOnTile[0] == 0 && playerBoard.numBoatsOnTile[1] == 0 && playerBoard.numBoatsOnTile[2] == 0)
             {
                 this.Hide();
                 bt.startGame();
             }
-          
+            else
+                MessageBox.Show("You can't start the battle without your whole fleet in position", "Captain, please place all of your ships",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                    );
             
         }
         

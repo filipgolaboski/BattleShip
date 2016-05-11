@@ -7,3 +7,21 @@ c:\Users\filip\Documents\Visual Studio 2015\Projects\BattleShip\BattleShip\obj\D
 c:\Users\filip\Documents\Visual Studio 2015\Projects\BattleShip\BattleShip\obj\Debug\BattleShip.csproj.GenerateResource.Cache
 c:\Users\filip\Documents\Visual Studio 2015\Projects\BattleShip\BattleShip\obj\Debug\BattleShip.exe
 c:\Users\filip\Documents\Visual Studio 2015\Projects\BattleShip\BattleShip\obj\Debug\BattleShip.pdb
+C:\Users\Ljupco\Desktop\BattleShip-master\BattleShip\BattleShip\bin\Debug\BattleShip.exe.config
+C:\Users\Ljupco\Desktop\BattleShip-master\BattleShip\BattleShip\obj\Debug\BattleShip.exe
+C:\Users\Ljupco\Desktop\BattleShip-master\BattleShip\BattleShip\obj\Debug\BattleShip.pdb
+C:\Users\Ljupco\Desktop\BattleShip-master\BattleShip\BattleShip\bin\Debug\BattleShip.exe
+C:\Users\Ljupco\Desktop\BattleShip-master\BattleShip\BattleShip\bin\Debug\BattleShip.pdb
+C:\Users\Ljupco\Desktop\BattleShip-master\BattleShip\BattleShip\obj\Debug\BattleShip.csprojResolveAssemblyReference.cache
+C:\Users\Ljupco\Desktop\BattleShip-master\BattleShip\BattleShip\obj\Debug\BattleShip.Form1.resources
+C:\Users\Ljupco\Desktop\BattleShip-master\BattleShip\BattleShip\obj\Debug\BattleShip.Properties.Resources.resources
+C:\Users\Ljupco\Desktop\BattleShip-master\BattleShip\BattleShip\obj\Debug\BattleShip.csproj.GenerateResource.Cache
+C:\Users\Ljupco\Desktop\BattleShip\BattleShip\BattleShip\bin\Debug\BattleShip.exe.config
+C:\Users\Ljupco\Desktop\BattleShip\BattleShip\BattleShip\obj\Debug\BattleShip.exe
+C:\Users\Ljupco\Desktop\BattleShip\BattleShip\BattleShip\obj\Debug\BattleShip.pdb
+C:\Users\Ljupco\Desktop\BattleShip\BattleShip\BattleShip\bin\Debug\BattleShip.exe
+C:\Users\Ljupco\Desktop\BattleShip\BattleShip\BattleShip\bin\Debug\BattleShip.pdb
+C:\Users\Ljupco\Desktop\BattleShip\BattleShip\BattleShip\obj\Debug\BattleShip.csprojResolveAssemblyReference.cache
+C:\Users\Ljupco\Desktop\BattleShip\BattleShip\BattleShip\obj\Debug\BattleShip.Form1.resources
+C:\Users\Ljupco\Desktop\BattleShip\BattleShip\BattleShip\obj\Debug\BattleShip.Properties.Resources.resources
+C:\Users\Ljupco\Desktop\BattleShip\BattleShip\BattleShip\obj\Debug\BattleShip.csproj.GenerateResource.Cache

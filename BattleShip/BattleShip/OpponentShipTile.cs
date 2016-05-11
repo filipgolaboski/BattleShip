@@ -24,7 +24,7 @@ namespace BattleShip
             clicked = true;
             Enabled = false;
             
-            Pen redPen = new Pen(Color.Red, 8);
+            Pen redPen = new Pen(Color.Red, 13);
             Bitmap img = new Bitmap(this.img);
             this.Image = null;
             using (var grph = Graphics.FromImage(img))
@@ -41,14 +41,14 @@ namespace BattleShip
             if (!clicked)
             {
                 this.imgs = this.Image;
-                Pen redPen = new Pen(Color.Green, 8);
+                Pen greenPen = new Pen(Color.LightGreen, 13);
                 Bitmap img = new Bitmap(this.Image);
                 this.Image = null;
                 using (var grph = Graphics.FromImage(img))
                 {
 
-                    grph.DrawLine(redPen, 0, 0, img.Width, img.Height);
-                    grph.DrawLine(redPen, img.Width, 0, 0, img.Height);
+                    grph.DrawLine(greenPen, 0, 0, img.Width, img.Height);
+                    grph.DrawLine(greenPen, img.Width, 0, 0, img.Height);
                 }
                 this.Image = img;
 

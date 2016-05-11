@@ -27,7 +27,8 @@ namespace BattleShip
         public int[] numBoatsOnTile = { 3, 1, 1 };
         public PlayerSetupBoard(int numBoats, int shipRotation)
         {
-            Bitmap img = new Bitmap("../../Textures/water.jpg");
+            //Bitmap img = new Bitmap("../../Textures/water.jpg");
+            Bitmap img = Properties.Resources.water;
             loadImages();
             this.numBoats = numBoats;
             this.shipRotation = shipRotation;
@@ -57,31 +58,31 @@ namespace BattleShip
         }
        public void loadImages()
         {
-            
-            triImages[0] = new Bitmap("../../Textures/TriPiece1.png");
-            triImages[1] = new Bitmap("../../Textures/TriPiece2.png");
-            triImages[2] = new Bitmap("../../Textures/TriPiece3.png");
-            triImagesVer[0] = new Bitmap("../../Textures/TriPiece1Ver.png");
-            triImagesVer[1] = new Bitmap("../../Textures/TriPiece2Ver.png");
-            triImagesVer[2] = new Bitmap("../../Textures/TriPiece3Ver.png");
-            fourImages[0] = new Bitmap("../../Textures/FourPiece1.png");
-            fourImages[1] = new Bitmap("../../Textures/FourPiece2.png");
-            fourImages[2] = new Bitmap("../../Textures/FourPiece3.png");
-            fourImages[3] = new Bitmap("../../Textures/FourPiece4.png");
-            fourImagesVer[0] = new Bitmap("../../Textures/FourPiece1Ver.png");
-            fourImagesVer[1] = new Bitmap("../../Textures/FourPiece2Ver.png");
-            fourImagesVer[2] = new Bitmap("../../Textures/FourPiece3Ver.png");
-            fourImagesVer[3] = new Bitmap("../../Textures/FourPiece4Ver.png");
-            fiveImages[0] = new Bitmap("../../Textures/FivePiece1.png");
-            fiveImages[1] = new Bitmap("../../Textures/FivePiece2.png");
-            fiveImages[2] = new Bitmap("../../Textures/FivePiece3.png");
-            fiveImages[3] = new Bitmap("../../Textures/FivePiece4.png");
-            fiveImages[4] = new Bitmap("../../Textures/FivePiece5.png");
-            fiveImagesVer[0] = new Bitmap("../../Textures/FivePiece1Ver.png");
-            fiveImagesVer[1] = new Bitmap("../../Textures/FivePiece2Ver.png");
-            fiveImagesVer[2] = new Bitmap("../../Textures/FivePiece3Ver.png");
-            fiveImagesVer[3] = new Bitmap("../../Textures/FivePiece4Ver.png");
-            fiveImagesVer[4] = new Bitmap("../../Textures/FivePiece5Ver.png");
+
+            triImages[0] = Properties.Resources.TriPiece1;
+            triImages[1] = Properties.Resources.TriPiece2;
+            triImages[2] = Properties.Resources.TriPiece3;
+            triImagesVer[0] = Properties.Resources.TriPiece1Ver;
+            triImagesVer[1] = Properties.Resources.TriPiece2Ver;
+            triImagesVer[2] = Properties.Resources.TriPiece3Ver;
+            fourImages[0] = Properties.Resources.FourPiece1;
+            fourImages[1] = Properties.Resources.FourPiece2;
+            fourImages[2] = Properties.Resources.FourPiece3;
+            fourImages[3] = Properties.Resources.FourPiece4;
+            fourImagesVer[0] = Properties.Resources.FourPiece1Ver;
+            fourImagesVer[1] = Properties.Resources.FourPiece2Ver;
+            fourImagesVer[2] = Properties.Resources.FourPiece3Ver;
+            fourImagesVer[3] = Properties.Resources.FourPiece4Ver;
+            fiveImages[0] = Properties.Resources.FivePiece1;
+            fiveImages[1] = Properties.Resources.FivePiece2;
+            fiveImages[2] = Properties.Resources.FivePiece3;
+            fiveImages[3] = Properties.Resources.FivePiece4;
+            fiveImages[4] = Properties.Resources.FivePiece5;
+            fiveImagesVer[0] = Properties.Resources.FivePiece1Ver;
+            fiveImagesVer[1] = Properties.Resources.FivePiece2Ver;
+            fiveImagesVer[2] = Properties.Resources.FivePiece3Ver;
+            fiveImagesVer[3] = Properties.Resources.FivePiece4Ver;
+            fiveImagesVer[4] = Properties.Resources.FivePiece5Ver;
 
         }
         private void Tiles_Enter(object sender, EventArgs e)
