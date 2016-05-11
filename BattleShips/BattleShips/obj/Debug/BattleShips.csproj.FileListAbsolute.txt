@@ -1,9 +1,0 @@
-c:\users\ljupco\documents\visual studio 2015\Projects\BattleShips\BattleShips\bin\Debug\BattleShips.exe.config
-C:\Users\Ljupco\documents\visual studio 2015\Projects\BattleShips\BattleShips\bin\Debug\BattleShips.exe
-C:\Users\Ljupco\documents\visual studio 2015\Projects\BattleShips\BattleShips\bin\Debug\BattleShips.pdb
-C:\Users\Ljupco\documents\visual studio 2015\Projects\BattleShips\BattleShips\obj\Debug\BattleShips.csprojResolveAssemblyReference.cache
-C:\Users\Ljupco\documents\visual studio 2015\Projects\BattleShips\BattleShips\obj\Debug\BattleShips.Form1.resources
-C:\Users\Ljupco\documents\visual studio 2015\Projects\BattleShips\BattleShips\obj\Debug\BattleShips.Properties.Resources.resources
-C:\Users\Ljupco\documents\visual studio 2015\Projects\BattleShips\BattleShips\obj\Debug\BattleShips.csproj.GenerateResource.Cache
-C:\Users\Ljupco\documents\visual studio 2015\Projects\BattleShips\BattleShips\obj\Debug\BattleShips.exe
-C:\Users\Ljupco\documents\visual studio 2015\Projects\BattleShips\BattleShips\obj\Debug\BattleShips.pdb
