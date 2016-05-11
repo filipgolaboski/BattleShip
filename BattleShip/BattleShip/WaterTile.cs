@@ -11,7 +11,7 @@ namespace BattleShip
     public class WaterTile : Tile
     {
         public new int i, j;
-        private Image img=null;
+        private Image img = null;
         public WaterTile(int i,int j) : base(i,j)
         {
             this.i = i;
@@ -29,7 +29,7 @@ namespace BattleShip
             clicked = true;
             Enabled = false;
             boatHere = false;
-            Pen redPen = new Pen(Color.Gray, 8);
+            Pen redPen = new Pen(Color.DarkGray, 13);
             Bitmap img = new Bitmap(this.Image);
             this.Image = null;
             using (var grph = Graphics.FromImage(img))
@@ -45,18 +45,16 @@ namespace BattleShip
             if (!clicked)
             {
                 this.img = this.Image;
-                Pen redPen = new Pen(Color.Green, 8);
+                Pen greenPen = new Pen(Color.LightGreen, 13);
                 Bitmap img = new Bitmap(this.Image);
                 this.Image = null;
                 using (var grph = Graphics.FromImage(img))
                 {
 
-                    grph.DrawLine(redPen, 0, 0, img.Width, img.Height);
-                    grph.DrawLine(redPen, img.Width, 0, 0, img.Height);
+                    grph.DrawLine(greenPen, 0, 0, img.Width, img.Height);
+                    grph.DrawLine(greenPen, img.Width, 0, 0, img.Height);
                 }
                 this.Image = img;
-                
-               // BackColor = Color.Yellow;
             }
             base.OnMouseEnter(e);
 
@@ -66,7 +64,6 @@ namespace BattleShip
             if (!clicked)
             {
                this.Image = img;
-                //BackColor = Color.Blue;
             }
             base.OnMouseLeave(e);
         }

@@ -26,6 +26,7 @@ namespace BattleShip
         {
             bt = new BattleContainer(this.Height,this.Width);
             this.Controls.Add(bt);
+            bt.BackColor = Color.Transparent;
             bt.startSetup();
             
         }

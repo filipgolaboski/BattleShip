@@ -24,7 +24,7 @@ namespace BattleShip
             
             clicked = true;
             Enabled = false;
-           Pen redPen = new Pen(Color.Red, 10);
+           Pen redPen = new Pen(Color.Red, 13);
             Bitmap img = new Bitmap(this.Image);
             this.Image = null;
             using(var grph = Graphics.FromImage(img))

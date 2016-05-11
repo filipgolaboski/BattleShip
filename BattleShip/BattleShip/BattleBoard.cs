@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Drawing;
 
 namespace BattleShip
 {
@@ -24,6 +25,9 @@ namespace BattleShip
         private bool firstTime = true;
         public Button newGame = new Button();
         private BattleContainer bt = null;
+        private Label lbTitle = new Label();
+        private Label lbOpponent = new Label();
+        private Label lbPlayer = new Label();
         public BattleBoard(PlayerSetupBoard pt, OpponentSetupBoard st , List<HashSet<Index>> playerBoatList, List<HashSet<Index>> opponentBoatList)
         {
             playerBoard = new PlayerWarBoard(pt.Tiles);
@@ -35,19 +39,45 @@ namespace BattleShip
             playerBoard.Enabled = false;
             this.Controls.Add(playerBoard);
             this.Controls.Add(opponentBoard);
-            l.Size = new System.Drawing.Size(500, 30);
-            l.Location = new System.Drawing.Point(10, playerBoard.Height + 30);
+            l.Size = new Size(900, 30);
+            l.Location = new Point(0, playerBoard.Height + 120);
+            l.TextAlign = ContentAlignment.MiddleCenter;
+            l.Font = new Font(new FontFamily("Arial"), 20, FontStyle.Bold);
+            l.ForeColor = Color.AntiqueWhite;
             this.Controls.Add(l);
+            l.Text = "Cannons are ready, captain! Fire when ready!";
             playerBoard.setBattleBoard(this);
             opponentBoard.setBattleBoard(this);
-            t.Interval = 250;
+            t.Interval = 400;
             t.Start();
             t.Tick += tick;
-            newGame.Size = new System.Drawing.Size(100, 50);
-            newGame.Location = new System.Drawing.Point(opponentBoard.Width + opponentBoard.Location.X - newGame.Width, playerBoard.Height); ;
+            newGame.Size = new Size(80, 50);
+            newGame.Location = new Point(opponentBoard.Width + opponentBoard.Location.X - newGame.Width, playerBoard.Height + 105);
+            newGame.Font = new Font("Arial", 10, FontStyle.Italic);
             newGame.Text = "New Game";
             newGame.MouseClick += newGame_click;
             this.Controls.Add(newGame);
+            this.Controls[this.Controls.Count - 1].BringToFront();
+            lbTitle.Font = new Font(new FontFamily("Arial"), 20, FontStyle.Bold | FontStyle.Italic);
+            lbTitle.Size = new Size(550, 30);
+            lbTitle.Location = new Point(380, 10);
+            lbTitle.Text = "B A T T L E";
+            lbTitle.ForeColor = Color.AntiqueWhite;
+            this.Controls.Add(lbTitle);
+            lbOpponent.Font = new Font(new FontFamily("Arial"), 20, FontStyle.Italic | FontStyle.Bold);
+            lbOpponent.Size = new Size(150, 30);
+            lbOpponent.Location = new Point(140, 70);
+            lbOpponent.Text = "Your sea";
+            lbOpponent.ForeColor = Color.AntiqueWhite;
+            this.Controls.Add(lbOpponent);
+            lbPlayer.Font = new Font(new FontFamily("Arial"), 20, FontStyle.Italic | FontStyle.Bold);
+            lbPlayer.Size = new Size(250, 30);
+            lbPlayer.Location = new Point(opponentBoard.Location.X + 110, 70);
+            lbPlayer.Text = "Opponent sea";
+            lbPlayer.ForeColor = Color.AntiqueWhite;
+            lbPlayer.BackColor = Color.Transparent;
+            this.Controls.Add(lbPlayer);
+
         }
         public void setBattleContainer(BattleContainer bt)
         {
@@ -55,8 +85,6 @@ namespace BattleShip
         }
         private void tick(object sender, EventArgs e)
         {
-           // opponentBoard.Enabled = false;
-            
             if (huntIsOn)
             {
                 if (c == 10)
@@ -71,11 +99,11 @@ namespace BattleShip
                     {
                         if (c % 2 == 0)
                         {
-                            l.Text = "Opponent Is thinking.";
+                            l.Text = "Enemy is thinking.";
                         }
                         else {
 
-                            l.Text = "Opponent Is thinking..";
+                            l.Text = "Enemy is thinking..";
                         }
                     }
                     
@@ -91,7 +119,6 @@ namespace BattleShip
             if (possibleClicks.Count == 0)
             {
                 firstTime = true;
-                //opponentBoard.Enabled = false;
                 int i = calcI();
                 int j = calcJ(i);
                 while (playerBoard.WarTile[i, j].clicked)
@@ -106,7 +133,7 @@ namespace BattleShip
                 if (playerBoard.WarTile[lasti, lastj].boatHere)
                 {
                     shipHit++;
-                    l.Text = "Opponent Hit!";
+                    l.Text = "Enemy hit our ship!";
                     addToPossible();
                     foreach (HashSet<Index> boat in playerListBoats)
                     {
@@ -115,7 +142,7 @@ namespace BattleShip
                         if (boat.Count == 0)
                         {
                             possibleClicks.Clear();
-                            l.Text = "BOAT DESTROYED";
+                            l.Text = "Enemy destroyed one of out battleships!";
                             firstTime = true;
                             playerListBoats.Remove(boat);
                             break;
@@ -124,7 +151,7 @@ namespace BattleShip
                 }
                 else
                 {
-                    l.Text = "Opponent Miss!";
+                    l.Text = "Enemy missed! Fire when ready, captain";
                     opponentBoard.Enabled = true;
                     huntIsOn = false;
                     return;
@@ -144,23 +171,24 @@ namespace BattleShip
                     if (firstTime)
                     {
                         possibleClicks.Clear();
-                        if (lasti - 1 == t.i)
-                            if (lasti + 1 < 10)
-                                possibleClicks.Push(playerBoard.WarTile[lasti + 1, lastj]);
-                        if (lasti + 1 == t.i)
-                            if (lasti - 1 >= 0)
-                                possibleClicks.Push(playerBoard.WarTile[lasti - 1, lastj]);
                         if (lastj - 1 == t.j)
                             if (lastj + 1 < 10)
                                 possibleClicks.Push(playerBoard.WarTile[lasti, lastj + 1]);
+                        if (lasti + 1 == t.i)
+                            if (lasti - 1 >= 0)
+                                possibleClicks.Push(playerBoard.WarTile[lasti - 1, lastj]);
                         if (lastj + 1 == t.j)
                             if (lastj - 1 >= 0)
                                 possibleClicks.Push(playerBoard.WarTile[lasti, lastj - 1]);
+                        if (lasti - 1 == t.i)
+                            if (lasti + 1 < 10)
+                                possibleClicks.Push(playerBoard.WarTile[lasti + 1, lastj]);
+                        
                     }
                     changePossible(t);
                     firstTime = false;      
                     shipHit++;
-                    l.Text = "Opponent Hit!";
+                    l.Text = "Enemy hit our ship!";
                     lasti = t.i;
                     lastj = t.j;
                     
@@ -170,7 +198,7 @@ namespace BattleShip
                         boat.Remove(ind);
                         if (boat.Count == 0)
                         {
-                            l.Text = "BOAT DESTROYED";
+                            l.Text = "Enemy destroyed one of our battleships";
                             possibleClicks.Clear();
                             firstTime = true;
                             playerListBoats.Remove(boat);
@@ -182,7 +210,7 @@ namespace BattleShip
                 }
                 else
                 {
-                    l.Text = "Opponent Miss!";
+                    l.Text = "Enemy missed! Fire when ready, captain";
                     opponentBoard.Enabled = true;
                     huntIsOn = false;
                     return;
@@ -194,8 +222,18 @@ namespace BattleShip
                 
             if (shipHit == 18)
             {
-                l.Text = "Opponent wins";
+                l.Text = "Enemy is victorious";
+                DialogResult res = MessageBox.Show("Enemy wins! Do you want a rematch?", "D E F E A T",
+                    MessageBoxButtons.YesNo
+                    );
                 t.Stop();
+                if (res == DialogResult.Yes)
+                {
+                    startNewGame();
+                } else
+                {
+                    Application.Exit();
+                }
             }
           
             
@@ -218,36 +256,29 @@ namespace BattleShip
         }
         public void addToPossible()
         {
+            List<Tile> list = new List<Tile>();
             if (lasti > 0)
-            {
                 if (!playerBoard.WarTile[lasti - 1, lastj].clicked)
-                {
-                    possibleClicks.Push(playerBoard.WarTile[lasti - 1, lastj]);
-                }
-
-            }
+                    list.Add(playerBoard.WarTile[lasti - 1, lastj]);
             if (lastj > 0)
-            {
                 if (!playerBoard.WarTile[lasti, lastj - 1].clicked)
-                {
-                    possibleClicks.Push(playerBoard.WarTile[lasti, lastj - 1]);
-                }
-            }
+                    list.Add(playerBoard.WarTile[lasti, lastj - 1]);
             if (lasti < 9)
-            {
                 if (!playerBoard.WarTile[lasti + 1, lastj].clicked)
-                {
-                    possibleClicks.Push(playerBoard.WarTile[lasti + 1, lastj]);
-                }
-
-            }
-           
+                    list.Add(playerBoard.WarTile[lasti + 1, lastj]);
             if (lastj < 9)
-            {
                 if (!playerBoard.WarTile[lasti, lastj + 1].clicked)
-                {
-                    possibleClicks.Push(playerBoard.WarTile[lasti, lastj + 1]);
-                }
+                    list.Add(playerBoard.WarTile[lasti, lastj + 1]);
+            Shufle(ref list);
+        }
+        private void Shufle(ref List<Tile> list)
+        {
+            Random r = new Random();
+            while(list.Count > 0)
+            {
+                int n = r.Next(0, list.Count);
+                possibleClicks.Push(list[n]);
+                list.RemoveAt(n);
             }
         }
         public int calcI()
@@ -265,7 +296,17 @@ namespace BattleShip
         }
         private void newGame_click(object sender, EventArgs e)
         {
-            this.Hide();
+            DialogResult res = MessageBox.Show("Are you sure you want to start a new game? (You will not be able to continue the current game later)", "Start new game",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
+            if(res == DialogResult.Yes)
+            {
+                startNewGame();
+            }
+        }
+        public void startNewGame()
+        {
+            this.Dispose();
             bt.startSetup();
         }
     }
