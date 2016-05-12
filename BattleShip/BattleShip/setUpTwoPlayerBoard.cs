@@ -25,7 +25,7 @@ namespace BattleShip
         public Label oLabel = new Label();
         public Label pLabel= new Label();
         private int[] numBoats = { 3, 1, 1};
-        
+        public Label boatsLabel = new Label();
         public setUpTwoPlayerBoard() {
             titleLabel.Font = new Font(new System.Drawing.FontFamily("Arial"), 20, FontStyle.Bold);
             titleLabel.ForeColor = Color.AntiqueWhite;
@@ -77,11 +77,17 @@ namespace BattleShip
             changeDir.Size = new System.Drawing.Size(100, 50);
             changeDir.Font = new Font(new FontFamily("Arial"), 10, FontStyle.Bold);
             this.Controls.Add(changeDir);
+            boatsLabel.Text = "Ships left \n"+ playerBoard.numBoatsOnTile[0];
+            boatsLabel.ForeColor= Color.AntiqueWhite;
+            boatsLabel.Location = new System.Drawing.Point(changeDir.Location.X+105,changeDir.Location.Y+10);
+            boatsLabel.Font= new Font(new FontFamily("Arial"), 10, FontStyle.Bold); 
+            boatsLabel.Size = new System.Drawing.Size(90, 50);
+            Controls.Add(boatsLabel);
             startGame.Size = new System.Drawing.Size(400, 50);
             startGame.Location =new System.Drawing.Point(opponentBoard.Location.X, playerBoard.Height + 105);
             startGame.Font = new Font(new FontFamily("Arial"), 15, FontStyle.Bold | FontStyle.Italic);
             startGame.Text = "START THE BATTLE";
-           
+     
             this.Controls.Add(startGame);
 
         }
@@ -91,7 +97,7 @@ namespace BattleShip
             playerBoard.numBoats = 4;
             if (playerBoard.numBoatsOnTile[1] > 0)
             {
-                
+                boatsLabel.Text = "Ships left \n" + playerBoard.numBoatsOnTile[1];
                 playerBoard.Enabled = true;
             }
             else
@@ -104,7 +110,7 @@ namespace BattleShip
             playerBoard.numBoats = 3;
             if (playerBoard.numBoatsOnTile[0] > 0)
             {
-                
+                boatsLabel.Text = "Ships left \n" + playerBoard.numBoatsOnTile[0];
                 playerBoard.Enabled = true;
             }
             else
@@ -119,7 +125,7 @@ namespace BattleShip
             playerBoard.numBoats = 5;
             if (playerBoard.numBoatsOnTile[2] > 0)
             {
-               
+                boatsLabel.Text = "Ships left \n" + playerBoard.numBoatsOnTile[2];
                 playerBoard.Enabled = true;
              }
             else
@@ -130,6 +136,12 @@ namespace BattleShip
         }
         private void board_click(object sender, EventArgs e)
         {
+            if (playerBoard.numBoats == 3)
+                boatsLabel.Text = "Ships left \n" + (playerBoard.numBoatsOnTile[0]-1);
+            if (playerBoard.numBoats == 4)
+                boatsLabel.Text = "Ships left \n" + (playerBoard.numBoatsOnTile[1]-1);
+            if (playerBoard.numBoats == 5)
+                boatsLabel.Text = "Ships left \n" + (playerBoard.numBoatsOnTile[2]-1);
         }
         private void changeDir_click(object sender, EventArgs e)
         {
