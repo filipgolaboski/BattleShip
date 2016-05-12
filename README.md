@@ -30,9 +30,10 @@
 
 3 Решение на апликацијата
 ========================
+## 3.1 Податочни структури
 
-3.1 Податочни структури
-------------------------
+###3.1.1 Tiles
+---- 
  Секое поле се чува во класа наречена **Tile** која наследува од **PictureBox** класата на Windows Forms.
  ``` C#
  public class Tile : PictureBox
@@ -96,6 +97,9 @@
     }
  ```
  Во оваа класа чуваме податоци за тоа дали полето е Highlighted, координати во матрицата,која слика ја содржи како позадина и дали има брод на тоа место. Чуваме и друга слика која при поминување со глушецот ја памти претходната слика за да може да се врати на неа при излез со глушецот. Од оваа класа наследуваме три класи **ShipTile**, **WaterTile** и **OpponentShipTile** кои се три класи што се однесуваат различно во режимот на борба (пример OpponentShipTile ја крие својата слика на брод, при Highlight исцртуваме **X** врз полињата и слично). При поставување на бродовите ја користиме основната Tile класа, а во режимот на борба бидејки ја прецртуваме целата матрица соодветно, поствавуме објект кој го претставува тоа поле.
+ 
+###3.1.2 SetUp
+--------
  
  **PlayerSetupBoard** е класа во кои се чуваат матриците за поставување на бродовите. Наследуваат од Panel класата. PlayerSetupBoard има методи за "Highlighting" кои во зависност од насоката, бројот на полиња што треба да се обележат, дали веќе постои поле на тоа место и дали префрла надвор од матрицата обележува доволен број на полиња. Овие методи се повикуваат секогаш кога со глушецот ќе влеземе врз поле и излеземе од него. Врз секое поле додадаваме настан на клик во кој се поставуваат бродови на обележаните позиции.Исто така оваа класа содржи листа од хаш сетови во кои ги чуваме позициите на бродовите.
 ```C#
@@ -335,9 +339,10 @@
         }
 
  ```
- Овие две класи се креираат во класата **setUpTwoPlayerBoard** која содржи копчиња за променување на насоката, типот на брод и копче за почнување на битката.
+ Класата **setUpTwoPlayerBoard** наследува од Panel класата и содржи копчиња за променување на насоката, типот на брод и копче за почнување на битката и горенаведените објекти.
  
- Во Form1 поставуваме настан за почеток на играта врз копчето Start the battle. При клик сите податоци за позициите се префрлуваат во BattleBoard и ја бришеме setUpTwoPlayerBoard.
+###3.1.3 Battle
+--------
  
  **BattleBoard** класата чува две класи кои наследуваат од панел наречени **PlayerWarBoard** и **OpponentWarBoard**. Во овие класи префрлуваме податоци за полињата на бродовите и листите со бродови. Во BattleBoard поставуваме настани при кликнување на поле од противникот. Ако има брод тука поставуваме настан кој што испишува дека сме погодиле и можиме да погодуваме пак и се проверува дали имаме погодено брод.Ако е погоден брод се испишува соодветна порака на екран. Ако се промаши се појавува порака дека сме промашиле и на ред е противникот.
  
@@ -402,6 +407,43 @@
 
         }
  ```
+###3.1.3 Главна форма
+------------------------
+ 
+ Во главната форма додаваме настани врз копчињата на setUp и battleBoard за почеток на битката и почнување на нова битка кои побикуваат функции наречени startSetup() и startGame(). Овие функции креираат нов објект и го поставуаат во формата во зависност од тоа дали сакаме да почнеме нова игра или да почнеме со битка.
+ ````C#
+   public void startGame()
+        {
+
+            battleBoard = new BattleBoard(setUp.playerBoard, setUp.opponentBoard, setUp.playerBoard.getBoatList(), setUp.opponentBoard.getListOfBoats());
+            battleBoard.Location = new System.Drawing.Point(0, 0);
+            battleBoard.Height = this.Height;
+            battleBoard.Width = this.Width;
+            battleBoard.newGame.Click += newGameB_click;
+            battleBoard.BackColor = Color.Transparent;
+            this.Controls.Add(battleBoard);
+            if (setUp != null)
+            {
+                setUp.Dispose();
+            }
+
+        }
+    public void startSetup()
+        { 
+            setUp = new setUpTwoPlayerBoard();
+            setUp.Location = new System.Drawing.Point(0, 0);
+            setUp.Height = this.Height;
+            setUp.Width = this.Width;
+            setUp.startGame.Click += startGame_click;
+            setUp.BackColor = Color.Transparent;
+            this.Controls.Add(setUp);
+            if (battleBoard != null)
+            {
+                battleBoard.Dispose();
+            }
+        }
+ ````
+ Главната форма исто така содржи панел кој се креира на почетокот а потоа се повикува со Esc копчето секој пат кога ќе сакаме да прочитаме за играта или да почнеме нова.
  
 ### 3.2 Програмирање на противникот
  -----------------------------
@@ -561,40 +603,6 @@
             
         }
  ```
- ##3.3 Главна форма
- -----------
- Во главната форма додаваме настани врз копчињата на setUp и battleBoard за почеток на битката и почнување на нова битка кои побикуваат функции наречени startSetup() и startGame(). Овие функции креираат нов објект и го поставуаат во формата во зависност од тоа дали сакаме да почнеме нова игра или да почнеме со битка.
- ````C#
-   public void startGame()
-        {
+ 
 
-            battleBoard = new BattleBoard(setUp.playerBoard, setUp.opponentBoard, setUp.playerBoard.getBoatList(), setUp.opponentBoard.getListOfBoats());
-            battleBoard.Location = new System.Drawing.Point(0, 0);
-            battleBoard.Height = this.Height;
-            battleBoard.Width = this.Width;
-            battleBoard.newGame.Click += newGameB_click;
-            battleBoard.BackColor = Color.Transparent;
-            this.Controls.Add(battleBoard);
-            if (setUp != null)
-            {
-                setUp.Dispose();
-            }
-
-        }
-    public void startSetup()
-        { 
-            setUp = new setUpTwoPlayerBoard();
-            setUp.Location = new System.Drawing.Point(0, 0);
-            setUp.Height = this.Height;
-            setUp.Width = this.Width;
-            setUp.startGame.Click += startGame_click;
-            setUp.BackColor = Color.Transparent;
-            this.Controls.Add(setUp);
-            if (battleBoard != null)
-            {
-                battleBoard.Dispose();
-            }
-        }
- ````
- Главната форма исто така содржи панел кој се креира на почетокот а потоа се повикува со Esc копчето секој пат кога ке сакаме да прочитаме за играта или да почнеме нова.
 
