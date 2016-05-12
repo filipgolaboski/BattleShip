@@ -121,8 +121,9 @@ namespace BattleShip
             setBoat(3);
             setBoat(3);
             setBoat(3);
-           setBoat(4);
-           setBoat(5);
+            setBoat(4);
+            setBoat(5);
+           
         }
         public void setBoat(int leng) {
             bool boatSet = false;
@@ -155,6 +156,10 @@ namespace BattleShip
                             listOfBoats.Add(boat);
                             boatSet = true;
                         }
+                        else
+                        {
+                            boatSet = false;
+                        }
                     }
                     if (MAXI - i < boatLength)
                     {
@@ -170,13 +175,17 @@ namespace BattleShip
                                     Tiles[pos + k, j].setOpBoat(triImagesVer[k-1]);
                                     if (leng == 4)
                                         Tiles[pos + k, j].setOpBoat(fourImagesVer[k-1]);
-                                    if (leng == 4)
+                                    if (leng == 5)
                                         Tiles[pos + k, j].setOpBoat(fiveImagesVer[k-1]);
                                     boat.Add(new Index(pos + k, j));
                                     k--;
                                 }
                                 listOfBoats.Add(boat);
                                 boatSet = true;
+                            }
+                            else
+                            {
+                                boatSet = false;
                             }
                         }
                     }
@@ -203,6 +212,10 @@ namespace BattleShip
                             listOfBoats.Add(boat);
                             boatSet = true;
                         }
+                        else
+                        {
+                            boatSet = false;
+                        }
                     }
                     if (MAXI - j < boatLength)
                     {
@@ -226,6 +239,10 @@ namespace BattleShip
                                 }
                                 boatSet = true;
                                 listOfBoats.Add(boat);
+                            }
+                            else
+                            {
+                                boatSet = false;
                             }
                         }
                     }

@@ -15,7 +15,9 @@ namespace BattleShip
     {
 
         
-        public BattleContainer bt;
+    
+        public setUpTwoPlayerBoard setUp;
+        public BattleBoard battleBoard;
         public Panel p = new Panel();
         public Button exitGame = new Button();
         public Button newGame = new Button();
@@ -47,8 +49,7 @@ namespace BattleShip
             exitGame.Text = "Exit Game";
             exitGame.Click += exitGame_click;
             p.Controls.Add(exitGame);
-            bt = new BattleContainer(this.Height,this.Width);
-            bt.BackColor = Color.Transparent;
+            startSetup();
             this.KeyPreview = true;
 
 
@@ -68,9 +69,13 @@ namespace BattleShip
             }
             else
             {
-                p.Hide();
-                bt.battleBoard.Dispose();
-                bt.startSetup();
+                keyPressed = false;
+                if (setUp != null)
+                {
+                    setUp.Dispose();
+                }
+                startSetup();
+                p.Hide();            
             }
         }
         private void continueGame_click(object sender, EventArgs e)
@@ -82,34 +87,14 @@ namespace BattleShip
         {
             Application.Exit();
         }
-        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
-        {
-            
-            bt.startSetup();
-           
-        }
-
-        private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            this.Controls.Add(bt);
-
-
-        }
-
-        private void Form1_Shown(object sender, EventArgs e)
-        {
-            backgroundWorker1.RunWorkerAsync(bt);
-
-
-
-        }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
-            if (!firstStart)
-            {
+            
 
-                if (e.KeyCode == Keys.Escape)
+         if (e.KeyCode == Keys.Escape)
+                if (!firstStart)
+                {
                     if (!keyPressed)
                     {
                         p.Show();
@@ -120,6 +105,78 @@ namespace BattleShip
                         p.Hide();
                         keyPressed = false;
                     }
+            }
+        }
+        public void startGame()
+        {
+
+            battleBoard = new BattleBoard(setUp.playerBoard, setUp.opponentBoard, setUp.playerBoard.getBoatList(), setUp.opponentBoard.getListOfBoats());
+            battleBoard.Location = new System.Drawing.Point(0, 0);
+            battleBoard.Height = this.Height;
+            battleBoard.Width = this.Width;
+            battleBoard.newGame.Click += newGameB_click;
+            battleBoard.BackColor = Color.Transparent;
+            this.Controls.Add(battleBoard);
+            if (setUp != null)
+            {
+                setUp.Dispose();
+            }
+
+        }
+        public void startSetup()
+        { 
+            setUp = new setUpTwoPlayerBoard();
+            setUp.Location = new System.Drawing.Point(0, 0);
+            setUp.Height = this.Height;
+            setUp.Width = this.Width;
+            setUp.startGame.Click += startGame_click;
+            setUp.BackColor = Color.Transparent;
+            this.Controls.Add(setUp);
+            if (battleBoard != null)
+            {
+                battleBoard.Dispose();
+            }
+        }
+
+        private void startGame_click(object sender, EventArgs e)
+        {
+            if (setUp.gameReady())
+            {
+                startGame();
+                
+            }
+            else
+                MessageBox.Show("You can't start the battle without your whole fleet in position", "Captain, please place all of your ships",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                    );
+
+        }
+        private void newGameB_click(object sender, EventArgs e)
+        {
+            if (!battleBoard.victoryCondition)
+            {
+                DialogResult res = MessageBox.Show("Are you sure you want to start a new game? (You will not be able to continue the current game later)", "Start new game",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question);
+                if (res == DialogResult.Yes)
+                {
+                    startSetup();
+                }
+            }
+            else
+            {
+
+                startSetup();
+            }
+        }
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams cp = base.CreateParams;
+                cp.ExStyle |= 0x02000000;  // Turn on WS_EX_COMPOSITED
+                return cp;
             }
         }
     }
