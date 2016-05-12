@@ -24,6 +24,10 @@ namespace BattleShip
         public Button continueGame = new Button();
         private bool firstStart = true;
         private bool keyPressed = false;
+        private Label lbMenuTitle = new Label();
+        private Button btnInfo = new Button();
+        private AboutForm instructionsForm = new AboutForm();
+
         public Form1()
         {
             
@@ -39,7 +43,7 @@ namespace BattleShip
             p.BackgroundImageLayout = ImageLayout.Stretch;
             newGame.Location = new System.Drawing.Point(300, 200);
             newGame.Size = new System.Drawing.Size(300, 50);
-            newGame.Font = new Font("Arial", 10, FontStyle.Italic);
+            newGame.Font = new Font("Arial", 20, FontStyle.Italic | FontStyle.Bold);
             newGame.Text = "New Game";
             newGame.Click += newGame_click;
             p.Controls.Add(newGame);
@@ -51,9 +55,29 @@ namespace BattleShip
             p.Controls.Add(exitGame);
             startSetup();
             this.KeyPreview = true;
+            p.BackColor = Color.Transparent;
+            lbMenuTitle.Text = "B A T T L E S H I P S";
+            lbMenuTitle.Location = new Point(0, 30);
+            lbMenuTitle.Font = new Font("Comic Sans", 60, FontStyle.Bold | FontStyle.Italic);
+            lbMenuTitle.ForeColor = Color.AntiqueWhite;
+            lbMenuTitle.BackColor = Color.Transparent;
+            lbMenuTitle.TextAlign = ContentAlignment.MiddleCenter;
+            lbMenuTitle.Size = new Size(920, 200);
+            p.Controls.Add(lbMenuTitle);
 
-
+            btnInfo.Text = "How to play";
+            btnInfo.Font = new Font("Arial", 10);
+            btnInfo.Size = new Size(300, 50);
+            btnInfo.Location = new Point(300, 320);
+            btnInfo.Click += btnInfo_Click;
+            p.Controls.Add(btnInfo);
         }
+
+        private void btnInfo_Click(object sender, EventArgs e)
+        {
+            instructionsForm.ShowDialog();
+        }
+
         private void newGame_click(object sender, EventArgs e)
         {
             if (firstStart)

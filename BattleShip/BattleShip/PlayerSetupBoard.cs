@@ -28,8 +28,6 @@ namespace BattleShip
        
         public PlayerSetupBoard(int numBoats, int shipRotation)
         {
-            //Bitmap img = new Bitmap("../../Textures/water.jpg");
-           
             loadImages();
             this.numBoats = numBoats;
             this.shipRotation = shipRotation;

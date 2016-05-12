@@ -65,7 +65,7 @@ namespace BattleShip
             fourBoats.Size = new System.Drawing.Size(100, 50);
             fourBoats.Font = new Font(new FontFamily("Arial"), 10, FontStyle.Bold);
             this.Controls.Add(fourBoats);
-            fiveBoats.Text = "Aricraft carier";
+            fiveBoats.Text = "Aircraft carier";
             fiveBoats.MouseClick += fiveBoats_click;
             fiveBoats.Location = new System.Drawing.Point(threeBoats.Width + fourBoats.Width + 5, playerBoard.Height + 105);
             fiveBoats.Size = new System.Drawing.Size(100, 50);
@@ -93,11 +93,9 @@ namespace BattleShip
             {
                 
                 playerBoard.Enabled = true;
-                
             }
             else
             {
-                
                 playerBoard.Enabled = false;
             }
         }
@@ -108,7 +106,6 @@ namespace BattleShip
             {
                 
                 playerBoard.Enabled = true;
-                
             }
             else
             {
@@ -124,8 +121,7 @@ namespace BattleShip
             {
                
                 playerBoard.Enabled = true;
-               
-            }
+             }
             else
             {
                 playerBoard.Enabled = false;
@@ -134,7 +130,6 @@ namespace BattleShip
         }
         private void board_click(object sender, EventArgs e)
         {
-           
         }
         private void changeDir_click(object sender, EventArgs e)
         {
