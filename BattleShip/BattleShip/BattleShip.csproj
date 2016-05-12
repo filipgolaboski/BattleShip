@@ -52,9 +52,6 @@
     <Compile Include="BattleBoard.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="BattleContainer.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Index.cs" />
     <Compile Include="OpponentSetupBoard.cs">
       <SubType>Component</SubType>

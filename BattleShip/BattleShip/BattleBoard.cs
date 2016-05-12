@@ -315,7 +315,7 @@ namespace BattleShip
         }
         private void Tile_Click(object sender, EventArgs e)
         {
-            
+          
             string s1 = "That was a miss";
             string s2 = "We hit nothing but water, captain";
             string s3 = "No enemy ships on that position";
@@ -372,5 +372,6 @@ namespace BattleShip
             }
 
         }
+       
     }
 }

@@ -21,7 +21,6 @@ namespace BattleShip
         public Button fiveBoats = new Button();
         public Button changeDir = new Button();
         public Button startGame = new Button();
-        public BattleContainer bt;
         public Label titleLabel = new Label();
         public Label oLabel = new Label();
         public Label pLabel= new Label();
@@ -54,19 +53,19 @@ namespace BattleShip
             pLabel.Location = new Point(opponentBoard.Location.X + 110, 70);
             pLabel.Text = "Opponent sea";
             this.Controls.Add(pLabel);
-            threeBoats.Text = "Ship size 3";
+            threeBoats.Text = "Destroyer";
             threeBoats.MouseClick += threeBoats_click;
             threeBoats.Location = new System.Drawing.Point(5, playerBoard.Height + 105);
             threeBoats.Size = new System.Drawing.Size(100, 50);
             threeBoats.Font = new Font(new FontFamily("Arial"), 10, FontStyle.Bold);
             this.Controls.Add(threeBoats);
-            fourBoats.Text = "Ship size 4";
+            fourBoats.Text = "Battleship";
             fourBoats.MouseClick += fourBoats_click;
             fourBoats.Location = new System.Drawing.Point(threeBoats.Width + 5, playerBoard.Height + 105);
             fourBoats.Size = new System.Drawing.Size(100, 50);
             fourBoats.Font = new Font(new FontFamily("Arial"), 10, FontStyle.Bold);
             this.Controls.Add(fourBoats);
-            fiveBoats.Text = "Ship size 5";
+            fiveBoats.Text = "Aricraft carier";
             fiveBoats.MouseClick += fiveBoats_click;
             fiveBoats.Location = new System.Drawing.Point(threeBoats.Width + fourBoats.Width + 5, playerBoard.Height + 105);
             fiveBoats.Size = new System.Drawing.Size(100, 50);
@@ -154,6 +153,7 @@ namespace BattleShip
             return playerBoard.numBoatsOnTile[0] == 0 && playerBoard.numBoatsOnTile[1] == 0 && playerBoard.numBoatsOnTile[2] == 0;
         }
         
+
     }
     }
 
