@@ -29,6 +29,10 @@ namespace BattleShip
             battleBoard.Width = this.Width;
             battleBoard.newGame.Click += newGame_click;
             this.Controls.Add(battleBoard);
+            if (setUp != null)
+            {
+                setUp.Dispose();
+            }
             
         }
         public void startSetup()
@@ -40,6 +44,10 @@ namespace BattleShip
             setUp.Width = this.Width;
             setUp.startGame.Click += startGame_click;
             this.Controls.Add(setUp);
+            if (battleBoard != null)
+            {
+                battleBoard.Dispose();
+            }
           
         }
        
@@ -59,10 +67,18 @@ namespace BattleShip
         }
         private void newGame_click(object sender, EventArgs e)
         {
-            DialogResult res = MessageBox.Show("Are you sure you want to start a new game? (You will not be able to continue the current game later)", "Start new game",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question);
-            if (res == DialogResult.Yes)
+            if (!battleBoard.victoryCondition)
+            {
+                DialogResult res = MessageBox.Show("Are you sure you want to start a new game? (You will not be able to continue the current game later)", "Start new game",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question);
+                if (res == DialogResult.Yes)
+                {
+                    battleBoard.Hide();
+                    startSetup();
+                }
+            }
+            else
             {
                 battleBoard.Hide();
                 startSetup();

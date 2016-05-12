@@ -30,6 +30,7 @@ namespace BattleShip
         private Label lbPlayer = new Label();
         private int sTilesHit = 0;
         private Random r = new Random();
+        public bool victoryCondition = false;
         public BattleBoard(PlayerSetupBoard pt, OpponentSetupBoard st , List<HashSet<Index>> playerBoatList, List<HashSet<Index>> opponentBoatList)
         {
             playerBoard = new PlayerWarBoard(pt.Tiles);
@@ -228,6 +229,7 @@ namespace BattleShip
                 t.Stop();
                 if (res == DialogResult.Yes)
                 {
+                    victoryCondition = true;
                     newGame.PerformClick();
                 } else
                 {
@@ -362,6 +364,7 @@ namespace BattleShip
                     MessageBoxButtons.YesNo);
                 if (res == DialogResult.Yes)
                 {
+                    victoryCondition = true;
                     newGame.PerformClick();
                 }
                 else
