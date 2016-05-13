@@ -55,7 +55,7 @@ namespace BattleShip
             t.Interval = 400;
             t.Start();
             t.Tick += tick;
-            newGame.Size = new Size(80, 50);
+            newGame.Size = new Size(60, 50);
             newGame.Location = new Point(opponentBoard.Width + opponentBoard.Location.X - newGame.Width, playerBoard.Height + 105);
             newGame.Font = new Font("Arial", 10, FontStyle.Italic);
             newGame.Text = "New Game";
