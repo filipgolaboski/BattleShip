@@ -86,13 +86,15 @@ namespace BattleShip
                 firstStart = false;
                 gameInProgress = true;
                 p.Hide();
-                exitGame.Hide();
-                continueGame.Location = new Point(300, 260);
-                continueGame.Size = new Size(300, 50);
-                continueGame.Font = new Font("Arial", 16, FontStyle.Italic);
+                continueGame.Location = new System.Drawing.Point(newGame.Location.X, newGame.Location.Y + 30);
+                continueGame.Size = new System.Drawing.Size(300, 50);
+                continueGame.Font = new Font("Arial", 20, FontStyle.Italic | FontStyle.Bold);
                 continueGame.Text = "Continue Game";
                 continueGame.Click += continueGame_click;
                 p.Controls.Add(continueGame);
+                newGame.Location = new System.Drawing.Point(newGame.Location.X, newGame.Location.Y + 90);
+                exitGame.Location = new System.Drawing.Point(exitGame.Location.X, exitGame.Location.Y + 90);
+                btnInfo.Location = new System.Drawing.Point(btnInfo.Location.X, btnInfo.Location.Y + 90);
             }
             else
             {
