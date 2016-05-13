@@ -26,6 +26,7 @@ namespace BattleShip
         private bool keyPressed = false;
         private Label lbMenuTitle = new Label();
         private Button btnInfo = new Button();
+        private bool gameInProgress = false;
         private AboutForm instructionsForm = new AboutForm();
 
         public Form1()
@@ -83,23 +84,35 @@ namespace BattleShip
             if (firstStart)
             {
                 firstStart = false;
+                gameInProgress = true;
                 p.Hide();
-                continueGame.Location = new System.Drawing.Point(300, 140);
-                continueGame.Size = new System.Drawing.Size(300, 50);
-                continueGame.Font = new Font("Arial", 10, FontStyle.Italic);
+                exitGame.Hide();
+                continueGame.Location = new Point(300, 260);
+                continueGame.Size = new Size(300, 50);
+                continueGame.Font = new Font("Arial", 16, FontStyle.Italic);
                 continueGame.Text = "Continue Game";
                 continueGame.Click += continueGame_click;
                 p.Controls.Add(continueGame);
             }
             else
             {
-                keyPressed = false;
-                if (setUp != null)
+                if (gameInProgress && battleBoard != null)
                 {
-                    setUp.Dispose();
+                    battleBoard.newGame.PerformClick();
+                    p.Hide();
+                    keyPressed = false;
                 }
-                startSetup();
-                p.Hide();            
+                else
+                {
+
+                    keyPressed = false;
+                    if (setUp != null)
+                    {
+                        setUp.Dispose();
+                    }
+                    startSetup();
+                    p.Hide();
+                }
             }
         }
         private void continueGame_click(object sender, EventArgs e)
@@ -109,7 +122,12 @@ namespace BattleShip
         }
         private void exitGame_click(object sender, EventArgs e)
         {
-            Application.Exit();
+            DialogResult res = MessageBox.Show("Are you sure you want to exit?", "Exit game",
+                MessageBoxButtons.YesNo);
+            if(res == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
         }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
@@ -135,7 +153,7 @@ namespace BattleShip
         {
 
             battleBoard = new BattleBoard(setUp.playerBoard, setUp.opponentBoard, setUp.playerBoard.getBoatList(), setUp.opponentBoard.getListOfBoats());
-            battleBoard.Location = new System.Drawing.Point(0, 0);
+            battleBoard.Location = new Point(0, 0);
             battleBoard.Height = this.Height;
             battleBoard.Width = this.Width;
             battleBoard.newGame.Click += newGameB_click;
@@ -150,7 +168,7 @@ namespace BattleShip
         public void startSetup()
         { 
             setUp = new setUpTwoPlayerBoard();
-            setUp.Location = new System.Drawing.Point(0, 0);
+            setUp.Location = new Point(0, 0);
             setUp.Height = this.Height;
             setUp.Width = this.Width;
             setUp.startGame.Click += startGame_click;

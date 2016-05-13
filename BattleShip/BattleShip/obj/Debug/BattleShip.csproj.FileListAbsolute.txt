@@ -54,3 +54,4 @@ C:\Users\filip\Downloads\BattleShip-LjupcoT-patch-1\BattleShip-LjupcoT-patch-1\B
 C:\Users\filip\Downloads\BattleShip-LjupcoT-patch-1\BattleShip-LjupcoT-patch-1\BattleShip\BattleShip\obj\Debug\BattleShip.Form1.resources
 C:\Users\filip\Downloads\BattleShip-LjupcoT-patch-1\BattleShip-LjupcoT-patch-1\BattleShip\BattleShip\obj\Debug\BattleShip.Properties.Resources.resources
 C:\Users\filip\Downloads\BattleShip-LjupcoT-patch-1\BattleShip-LjupcoT-patch-1\BattleShip\BattleShip\obj\Debug\BattleShip.csproj.GenerateResource.Cache
+C:\Users\Ljupco\Desktop\BattleShip-master\BattleShip\BattleShip\obj\Debug\BattleShip.AboutForm.resources
